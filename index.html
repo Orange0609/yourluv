@@ -1,0 +1,181 @@
+<!DOCTYPE html> <html lang="zh-Hant">
+<head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>祢的愛｜吉他彈唱</title>
+<style> body { margin: 0; min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; background: #111827; font-family: Arial, "Microsoft JhengHei", sans-serif; color: white; }
+.player {
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  padding: 40px 25px;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  font-weight: normal;
+}
+
+audio {
+  width: 100%;
+}
+
+.artist {
+  margin-top: 20px;
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+.download-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 25px;
+  background: #2563eb;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.download-btn:hover {
+  background: #1d4ed8;
+}
+
+/* 歌詞區塊 */
+.lyrics {
+  margin-top: 35px;
+  padding: 25px 20px;
+  background: #1f2937;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.lyrics-title {
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-weight: normal;
+  color: #93c5fd;
+}
+
+.lyrics-content {
+  font-size: 16px;
+  line-height: 2;
+  white-space: pre-wrap;
+  color: #e5e7eb;
+  overflow-wrap: break-word;
+}
+</style> </head>
+<body>
+<div class="player">
+<h1 id="songTitle">祢的愛</h1>
+
+<audio controls id="musicPlayer">
+  您的瀏覽器不支援音樂播放。
+</audio>
+
+<div class="artist" id="songSubtitle">
+  吉他彈唱
+</div>
+
+<a
+  class="download-btn"
+  id="downloadButton"
+  href="#"
+  download
+>
+  🎵 下載音樂 MP3
+</a>
+
+<!-- 歌詞區塊 -->
+<div class="lyrics">
+
+  <div class="lyrics-title">歌詞</div>
+
+  <div class="lyrics-content" id="songLyrics"></div>
+
+</div>
+</div>
+<script>
+// ==============================
+// 歌曲設定：更換歌曲時修改這裡即可
+// ==============================
+
+// GitHub 儲存庫中的 MP3 檔案名稱
+const musicFile = "祢的愛 吉他彈唱.MP3";
+
+// 網頁顯示的歌曲標題
+const songTitle = "祢的愛";
+
+// 歌曲副標題
+const songSubtitle = "吉他彈唱";
+
+// 使用者下載時看到的檔案名稱
+const downloadFileName = "祢的愛 吉他彈唱.mp3";
+
+// 歌詞：直接在這裡貼上完整歌詞
+const lyrics = `祢的愛是 不到最後不停止
+祢說愛是 恆久忍耐有恩慈
+我所願 祢都聽見
+我所見 是祢愛的彰顯
+祢是我的信念
+
+祢的愛是 在十架上為我死
+祢的信實 使我在愛中不迷失
+我情願 一生跟隨
+有疲憊 我依然無畏
+邁開步伐向前
+
+祢是我渴慕
+除祢外別無救贖
+祢細心呵護
+每顆傷心的淚珠
+若不是因為祢
+我怎麼會在這旅途 尋見天路
+領我走向愛我的父
+`;
+// ==============================
+// 音樂網址設定
+// ==============================
+
+const musicUrl = "./" + encodeURIComponent(musicFile);
+
+// ==============================
+// 顯示歌曲資訊
+// ==============================
+
+document.getElementById("songTitle").textContent = songTitle;
+
+document.getElementById("songSubtitle").textContent = songSubtitle;
+
+document.getElementById("songLyrics").textContent = lyrics;
+
+// ==============================
+// 設定音樂播放器
+// ==============================
+
+const musicPlayer = document.getElementById("musicPlayer");
+
+musicPlayer.src = musicUrl;
+
+musicPlayer.load();
+
+musicPlayer.addEventListener("loadedmetadata", function() {
+  console.log("音樂載入成功，長度：", musicPlayer.duration);
+});
+
+musicPlayer.addEventListener("error", function() {
+  console.log("音樂載入失敗：", musicPlayer.error);
+});
+
+// ==============================
+// 下載按鈕設定
+// ==============================
+
+const downloadButton = document.getElementById("downloadButton");
+
+downloadButton.href = musicUrl;
+
+downloadButton.download = downloadFileName;
+</script>
+</body> </html>
